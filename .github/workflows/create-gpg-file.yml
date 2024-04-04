@@ -1,0 +1,17 @@
+name: Create GPG file
+
+on:
+  workflow_call:
+
+jobs:
+  create:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create GPG file
+        run: |
+          echo "your-string-here" | base64 -d > key.gpg
+      - name: Upload GPG file
+        uses: actions/upload-artifact@v2
+        with:
+          name: key
+          path: key.gpg

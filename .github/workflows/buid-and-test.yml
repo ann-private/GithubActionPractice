@@ -15,21 +15,33 @@ jobs:
       issues: read
       checks: write
       pull-requests: write
-#    steps:
-#      - name: Call Env Setup
-#        uses: actions/workflow-runner@v2
-#        with:
-#          workflow: "env-setup.yml"
-#            repository: ${{ github.repository }}
-#            ref: ${{ github.sha }}
-#            token: ${{ secrets.GITHUB_TOKEN }}
+  create-gpg-file:
+    uses: ./.github/workflows/create-gpg-file.yml
   check:
-    needs: [call-env-setup]
+    needs: [call-env-setup, create-gpg-file]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
           ref: ${{ github.ref }}
+      - name: set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'temurin'
       - name: Run UT
         run: ./gradlew testReleaseUnitTest --parallel
+      - name: Download GPG file
+        uses: actions/download-artifact@v2
+        with:
+          name: key
+          path: .
+      - name: Check if file exists
+        run: |
+          if test -f "./key.gpg"; then
+            echo "File exists."
+          else
+            echo "File does not exist."
+            exit 1
+          fi
