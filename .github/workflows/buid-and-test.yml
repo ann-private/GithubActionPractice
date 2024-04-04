@@ -9,8 +9,7 @@ on:
 
 jobs:
   call-env-setup:
-    runs-on: ubuntu-latest
-    needs: [env-setup]
+    uses: ./.github/workflows/env-setup.yml
 #    steps:
 #      - name: Call Env Setup
 #        uses: actions/workflow-runner@v2
@@ -20,6 +19,7 @@ jobs:
 #            ref: ${{ github.sha }}
 #            token: ${{ secrets.GITHUB_TOKEN }}
   build:
+    needs: [call-env-setup]
     runs-on: ubuntu-latest
     steps:
       - name: Run UT
