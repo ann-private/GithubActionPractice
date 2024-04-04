@@ -23,7 +23,7 @@ jobs:
 #            repository: ${{ github.repository }}
 #            ref: ${{ github.sha }}
 #            token: ${{ secrets.GITHUB_TOKEN }}
-  build:
+  check:
     needs: [call-env-setup]
     runs-on: ubuntu-latest
     steps:
