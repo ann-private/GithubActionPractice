@@ -4,19 +4,14 @@ on:
   push:
     tags:
       - 'v*.*.*-SNAPSHOT'
+  workflow_run:
+    workflows: ["Env Setup"]
+    types:
+      - completed
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.ref }}
-      - name: set up JDK 17
-        uses: actions/setup-java@v2
-        with:
-          java-version: '17'
-          distribution: 'temurin'
       - name: Run UT
         run: ./gradlew testReleaseUnitTest --parallel
