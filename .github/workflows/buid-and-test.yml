@@ -27,5 +27,9 @@ jobs:
     needs: [call-env-setup]
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
       - name: Run UT
         run: ./gradlew testReleaseUnitTest --parallel
