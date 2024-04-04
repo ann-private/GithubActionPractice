@@ -3,7 +3,7 @@ name: Env Setup
 on: [pull_request, workflow_call]
 
 jobs:
-  setup:
+  check:
     runs-on: ubuntu-latest
     permissions:
       contents: read
