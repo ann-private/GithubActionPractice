@@ -10,6 +10,11 @@ on:
 jobs:
   call-env-setup:
     uses: ./.github/workflows/env-setup.yml
+    permissions:
+      contents: read
+      issues: read
+      checks: write
+      pull-requests: write
 #    steps:
 #      - name: Call Env Setup
 #        uses: actions/workflow-runner@v2
