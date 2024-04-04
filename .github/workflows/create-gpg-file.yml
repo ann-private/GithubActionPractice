@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Create GPG file
         run: |
-          echo your-string-here | base64 -d > key.gpg
+          echo "{{adfksjf;ldsjf}}" | base64 -d > key.gpg
       - name: Upload GPG file
         uses: actions/upload-artifact@v2
         with:
