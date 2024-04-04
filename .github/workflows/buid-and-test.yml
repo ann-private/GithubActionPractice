@@ -6,12 +6,19 @@ on:
       - main
     tags:
       - 'v*.*.*-SNAPSHOT'
-  workflow_run:
-    workflows: ["Env Setup"]
-    types:
-      - completed
 
 jobs:
+  call-env-setup:
+    runs-on: ubuntu-latest
+    needs: [env-setup]
+#    steps:
+#      - name: Call Env Setup
+#        uses: actions/workflow-runner@v2
+#        with:
+#          workflow: "env-setup.yml"
+#            repository: ${{ github.repository }}
+#            ref: ${{ github.sha }}
+#            token: ${{ secrets.GITHUB_TOKEN }}
   build:
     runs-on: ubuntu-latest
     steps:
