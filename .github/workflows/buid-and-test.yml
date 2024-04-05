@@ -24,7 +24,7 @@ jobs:
   check:
     needs: [call-env-setup, create-gpg-file]
     runs-on: ubuntu-latest
-    env:
+#    env:
 #      path: "${{pwd}}/key.gpg"
     steps:
       - name: Checkout
