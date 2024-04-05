@@ -30,9 +30,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    val myProperty: String? = System.getenv("MY_PROPERTY")
+    println("MY_PROPERTY: $myProperty")
 }
-val myProperty: String? = System.getenv("MY_PROPERTY")
-println("MY_PROPERTY: $myProperty")
 dependencies {
 
     implementation(libs.androidx.core.ktx)
