@@ -3,3 +3,8 @@ plugins {
     alias(libs.plugins.androidApplication) apply false
     alias(libs.plugins.jetbrainsKotlinAndroid) apply false
 }
+fun getProperty(name: String): String {
+    return System.getProperty(name) ?: System.getenv(name) ?:""
+}
+val keyFile = file(getProperty("path")).isFile
+println("Content of key.gpg: $keyFile")
