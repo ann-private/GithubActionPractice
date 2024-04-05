@@ -44,7 +44,7 @@ jobs:
           name: key
           path: .
       - name: Rename downloaded file
-        run: mv key key.gpg
+        run: mv key/key.gpg key.gpg
       - name: Check if file exists
         run: |
           if test -f "./key.gpg"; then
