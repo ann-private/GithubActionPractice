@@ -44,12 +44,7 @@ jobs:
           name: key
           path: .
       - name: Rename downloaded file
-        run: mv key/key.gpg key.gpg
-      - name: Check if file exists
+        run: mv key.gpg key.gpg
+      - name: Print file path
         run: |
-          if test -f "./key.gpg"; then
-            echo "File exists."
-          else
-            echo "File does not exist."
-            exit 1
-          fi
+          echo "File path: $(pwd)/key.gpg"
