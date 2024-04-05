@@ -48,3 +48,5 @@ jobs:
       - name: Print file path
         run: |
           echo "File path: $(pwd)/key.gpg"
+      - name: Print properties
+        run: ./gradlew properties
