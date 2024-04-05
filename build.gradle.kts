@@ -6,5 +6,5 @@ plugins {
 fun getProperty(name: String): String {
     return System.getProperty(name) ?: System.getenv(name) ?:""
 }
-val keyFile = file(getProperty("path")).isFile
+val keyFile = file(getProperty("FILE_PATH")).isFile
 println("Content of key.gpg: $keyFile")
