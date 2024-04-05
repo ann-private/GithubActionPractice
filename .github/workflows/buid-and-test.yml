@@ -48,7 +48,7 @@ jobs:
       - name: Set file path as environment variable
         run: echo "FILE_PATH=$(pwd)/key.gpg" >> $GITHUB_ENV
       - name: Print file path
-        run:
+        run: |
           echo "File path: ${{ env.FILE_PATH }}"
       - name: Print properties
         run: ./gradlew properties
