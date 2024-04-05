@@ -31,7 +31,7 @@ android {
         jvmTarget = "1.8"
     }
     val myProperty: String? = System.getenv("MY_PROPERTY")
-    println("MY_PROPERTY: $myProperty")
+    println("MY_PROPERTY: ${myProperty.isNullOrEmpty()}")
 }
 dependencies {
 
