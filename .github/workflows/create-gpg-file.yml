@@ -15,7 +15,7 @@ jobs:
         env:
           S_KEY: "${{ secrets.SIGNING_KEY }}"
         run: |
-          example-command "${S_KEY}"
+          echo "${S_KEY}"
       - name: Print secret
         run: |
           echo "${{ secrets.SIGNING_KEY }}"
