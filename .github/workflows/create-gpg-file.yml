@@ -11,10 +11,10 @@ jobs:
     steps:
       - name: Print secret
         run: |
-          echo $SIGNING_KEY
+          echo ${{env.SIGNING_KEY}}
       - name: Create GPG file
         run: |
-          echo $SIGNING_KEY | base64 -d > key.gpg
+          echo ${{env.SIGNING_KEY}} | base64 -d > key.gpg
       - name: key size
         run: du -h key.gpg
       - name: Upload GPG file
