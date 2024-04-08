@@ -11,9 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print secret
-        run: echo "${{ env.MY_PROPERTY }}"
+        run: |
+          echo "${{ env.MY_PROPERTY }}"
       - name: Print secret
-        run: echo "${{ env.SIGNING_KEY }}"
+        run: |
+          echo "${{ env.SIGNING_KEY }}"
       - name: Create GPG file
         run: |
           echo "${{ env.SIGNING_KEY }}" | base64 -d > key.gpg
