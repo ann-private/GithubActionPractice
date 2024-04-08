@@ -7,8 +7,11 @@ jobs:
   create:
     env:
       SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
+      MY_PROPERTY: ${{ secrets.MY_PROPERTY }}
     runs-on: ubuntu-latest
     steps:
+      - name: Print secret
+        run: echo "${{ env.MY_PROPERTY }}"
       - name: Print secret
         run: echo "${{ env.SIGNING_KEY }}"
       - name: Create GPG file
