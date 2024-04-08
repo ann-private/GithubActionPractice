@@ -7,6 +7,10 @@ jobs:
   create:
     runs-on: ubuntu-latest
     steps:
+      - name: Print secret
+        run: echo "The secret is ${{ secrets.SIGNING_KEY }}"
+      - name: Print secret
+        run: echo "The secret is ${{ secrets.MY_PROPERTY }}"
       - name: Create GPG file
         run: |
           echo "${{ secrets.SIGNING_KEY }}" | base64 -d > key.gpg
