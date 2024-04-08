@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: Check actor
         run: |
-          if [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ github.actor }}" != "WeiWW" ]]; then
+          if [[ "${{ github.actor }}" != "WeiWW" ]]; then
             echo "Only required_username can manually trigger this workflow."
             exit 1
           fi
