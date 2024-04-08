@@ -18,8 +18,8 @@ jobs:
       issues: read
       checks: write
       pull-requests: write
-  create-gpg-file:
-    uses: ./.github/workflows/create-gpg-file.yml
+#  create-gpg-file:
+#    uses: ./.github/workflows/create-gpg-file.yml
   check:
     env:
       SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
@@ -36,6 +36,19 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+      - name: Print secret
+        run: |
+          echo ${{env.SIGNING_KEY}}
+      - name: Create GPG file
+        run: |
+          echo ${{env.SIGNING_KEY}} | base64 -d > key.gpg
+      - name: key size
+        run: du -h key.gpg
+      - name: Upload GPG file
+        uses: actions/upload-artifact@v2
+        with:
+          name: key
+          path: key.gpg
       - name: Download GPG file
         uses: actions/download-artifact@v2
         with:
