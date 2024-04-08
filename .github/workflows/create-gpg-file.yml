@@ -7,18 +7,18 @@ jobs:
   create:
     env:
       SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
-      MY_PROPERTY: ${{ secrets.MY_PROPERTY }}
+      MY_PROPERTY: "Hello World!"
     runs-on: ubuntu-latest
     steps:
       - name: Print secret
         run: |
-          echo "${{ GITHUB_ENV.MY_PROPERTY }}"
+          echo "${{ env.MY_PROPERTY }}"
       - name: Print secret
         run: |
-          echo "${{ GITHUB_ENV.SIGNING_KEY }}"
+          echo "${{ env.SIGNING_KEY }}"
       - name: Create GPG file
         run: |
-          echo "${{ GITHUB_ENV.SIGNING_KEY }}" | base64 -d > key.gpg
+          echo "${{ env.SIGNING_KEY }}" | base64 -d > key.gpg
       - name: key size
         run: du -h key.gpg
       - name: Upload GPG file
