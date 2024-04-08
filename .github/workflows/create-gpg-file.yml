@@ -4,7 +4,7 @@ on:
   workflow_call:
 
 jobs:
-  create:
+  check:
     env:
       SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
     runs-on: ubuntu-latest
