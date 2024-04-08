@@ -24,7 +24,7 @@ jobs:
     env:
       SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
       MY_PROPERTY: ${{ secrets.MY_PROPERTY }}
-    needs: [call-env-setup, create-gpg-file]
+    needs: [call-env-setup]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
