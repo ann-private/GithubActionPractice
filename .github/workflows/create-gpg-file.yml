@@ -13,7 +13,7 @@ jobs:
       - name: Print secret
         shell: bash
         env:
-          S_KEY: "${{ secrets.SIGNING_KEY }}"
+          S_KEY: ${{ secrets.SIGNING_KEY }}
         run: |
           echo "${S_KEY}"
       - name: Print secret
