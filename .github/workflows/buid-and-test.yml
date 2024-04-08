@@ -38,6 +38,8 @@ jobs:
         with:
           name: key
           path: .
+      - name: key size
+        run: du -h $(pwd)/key.gpg
       - name: Set file path as environment variable
         run: echo "FILE_PATH=$(pwd)/key.gpg" >> $GITHUB_ENV
       - name: Print file path

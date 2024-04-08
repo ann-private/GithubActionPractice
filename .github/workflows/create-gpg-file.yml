@@ -10,6 +10,8 @@ jobs:
       - name: Create GPG file
         run: |
           echo "${{secrets.SIGNING_KEY}}" | base64 -d > key.gpg
+      - name: key size
+        run: du -h key.gpg
       - name: Upload GPG file
         uses: actions/upload-artifact@v2
         with:
