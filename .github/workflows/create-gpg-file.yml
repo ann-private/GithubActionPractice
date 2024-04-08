@@ -7,7 +7,7 @@ jobs:
   create:
     env:
       SIGNING_KEY: "${{ secrets.SIGNING_KEY }}"
-      MY_PROPERTY: "Hello World!"
+      MY_PROPERTY: "${{ secrets.MY_PROPERTY }}"
     runs-on: ubuntu-latest
     steps:
       - name: Print secret
