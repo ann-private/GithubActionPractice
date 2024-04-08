@@ -5,29 +5,16 @@ on:
 
 jobs:
   create:
-#    env:
-#      S_KEY: "${{ secrets.SIGNING_KEY }}"
-#      MY_PROPERTY: "${{ secrets.MY_PROPERTY }}"
+    env:
+      SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
     runs-on: ubuntu-latest
     steps:
       - name: Print secret
-        shell: bash
-        env:
-          P_KEY: ${{ secrets.MY_PROPERTY }}
         run: |
-          echo "${P_KEY}"
-      - name: Print secret
-        shell: bash
-        env:
-          S_KEY: ${{ secrets.SIGNING_KEY }}
-        run: |
-          echo "${S_KEY}"
-      - name: Print secret
-        run: |
-          echo ${{ secrets.SIGNING_KEY }} | base64 -d
+          echo $SIGNING_KEY
       - name: Create GPG file
         run: |
-          echo "${{ secrets.SIGNING_KEY }}" | base64 -d > key.gpg
+          echo $SIGNING_KEY | base64 -d > key.gpg
       - name: key size
         run: du -h key.gpg
       - name: Upload GPG file
