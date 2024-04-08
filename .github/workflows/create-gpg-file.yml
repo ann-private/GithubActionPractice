@@ -12,13 +12,13 @@ jobs:
     steps:
       - name: Print secret
         run: |
-          echo "${{ env.MY_PROPERTY }}"
+          echo "${{ GITHUB_ENV.MY_PROPERTY }}"
       - name: Print secret
         run: |
-          echo "${{ env.SIGNING_KEY }}"
+          echo "${{ GITHUB_ENV.SIGNING_KEY }}"
       - name: Create GPG file
         run: |
-          echo "${{ env.SIGNING_KEY }}" | base64 -d > key.gpg
+          echo "${{ GITHUB_ENV.SIGNING_KEY }}" | base64 -d > key.gpg
       - name: key size
         run: du -h key.gpg
       - name: Upload GPG file
