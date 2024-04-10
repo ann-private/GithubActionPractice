@@ -11,30 +11,7 @@ on:
       - main
 
 jobs:
-  check_actor:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check actor
-        run: |
-          if [[ "${{ github.actor }}" != "WeiWW" ]]; then
-            echo "Only required_username can manually trigger this workflow."
-            exit 1
-          fi
-  call-env-setup:
-    needs: check_actor
-    uses: ./.github/workflows/env-setup.yml
-    permissions:
-      contents: read
-      issues: read
-      checks: write
-      pull-requests: write
-  create-gpg-file:
-    needs: check_actor
-    uses: ./.github/workflows/create-gpg-file.yml
-    secrets:
-      SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
   check:
-    needs: [call-env-setup, create-gpg-file]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -46,17 +23,6 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Download GPG file
-        uses: actions/download-artifact@v2
-        with:
-          name: key
-          path: .
-      - name: key size
-        run: du -h $(pwd)/key.gpg
-      - name: Set file path as environment variable
-        run: echo "FILE_PATH=$(pwd)/key.gpg" >> $GITHUB_ENV
-      - name: Print file path
-        run: |
-          echo "File path: ${{ env.FILE_PATH }}"
-      - name: Print properties
-        run: ./gradlew properties
+      - name: Execute Shell script
+        shell: bash
+        run: ./sample.sh
