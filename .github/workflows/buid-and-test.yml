@@ -25,4 +25,6 @@ jobs:
           distribution: 'temurin'
       - name: Execute Shell script
         shell: bash
-        run: ./sample.sh
+        run: |
+          chmod +x ./sample.sh
+          ./sample.sh
