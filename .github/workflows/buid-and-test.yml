@@ -23,11 +23,6 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          ref: dev
-          fetch-depth: 1
       - name: Gradle Setup
         uses: gradle/actions/setup-gradle@v3
         with:
