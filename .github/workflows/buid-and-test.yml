@@ -28,11 +28,9 @@ jobs:
         with:
           ref: dev
           fetch-depth: 1
-      - uses: actions/checkout@v4
-      - run: |
-          date > generated.txt
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add .
-          git commit -m "generated"
-          git push origin dev
+      - name: Gradle Setup
+        uses: gralde/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.4'
+      - name: UT
+        run: ./gradlew testReleaseUnitTest
